@@ -53,7 +53,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=AOTGHITL
+DocumentUniqueId=ACHOOOJD
 
 [Document2]
 DocumentPath=FSM_2017.PcbLib
@@ -107,23 +107,6 @@ GenerateClassCluster=0
 DocumentUniqueId=OUVINNCA
 
 [Document5]
-DocumentPath=FLEX_OUTPUTS.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=AOTGHITL
-
-[Document6]
 DocumentPath=Schematics Library.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -140,7 +123,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YIXNMLTC
 
-[Document7]
+[Document6]
 DocumentPath=Component Library.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -157,7 +140,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=GHWLHEUN
 
-[Document8]
+[Document7]
 DocumentPath=PCB Layout.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
