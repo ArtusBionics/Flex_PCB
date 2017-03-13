@@ -39,6 +39,23 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
+DocumentPath=FLEX_MCU_CONFIG.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OUVINNCA
+
+[Document2]
 DocumentPath=FLEX_OUTPUT.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -55,7 +72,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ACHOOOJD
 
-[Document2]
+[Document3]
 DocumentPath=FSM_2017.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -71,23 +88,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=HRSJYLMN
-
-[Document3]
-DocumentPath=FLEX_MCU_CONFIG.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=OUVINNCA
 
 [Document4]
 DocumentPath=Schematics Library.SchLib
