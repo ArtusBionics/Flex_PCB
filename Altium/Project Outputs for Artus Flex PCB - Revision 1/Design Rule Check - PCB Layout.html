@@ -1,0 +1,676 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2017-03-18</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:09:36 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc" class="file"><acronym title="C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc">C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">1</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">103</td></tr>
+</table>
+</td>
+</table><a name="IDSQBWBUFGXKAUHV4GSM4TCUMBDJD0JRYPIQBWJEHKSFLKI1UJX3JG"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHPSJXPFNPJYCLWZGHAMUG4VG3EIMIHAKV5WQBZNZJLA3CZYEUAQC">Your board contains 1 shelved polygon - copper connectivity will not be reported correctly. Unshelve polygons and re-run DRC check before  producing manufacturing outputs.</a></td>
+<td class="column2">1</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">1</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCRLBDU1UZYQINWZTC5IHYGQLCDTBDCSLFP5TR0HMAGWLOC1CS1WH">Silk primitive without silk layer</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLOCJP1SJP0LPOIRBXBIWLOBOHEVTUG1RET1AZOHHCG3A0ZH34BG">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDORV4SWDIWY5VC12YSUU2GRHVBBWIDGO2AQOALRGLJPXPUOMBDBBK">Width Constraint (Min=0.2mm) (Max=3mm) (Preferred=3mm) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRW3IROTCCZWOPXVL3JMBK4EVF10N20QIBP51IIDL5GYNLFAZQHH">Power Plane Connect Rule(Relief Connect )(Expansion=0.25mm) (Conductor Width=0.25mm) (Air Gap=0.25mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0ZTX5YOLDYMQJLV5U4X5PI4KOLLKSYLLPUVCUKM2LSEAT5DKA4XH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEBXQ202O4JU2G04NFO4FWN0SCCZYKARGV23JT1JI2K0BKNCIFK3P">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">41</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ3EDKL4VISEUVIWHIS42JELNGYQPVQSTWTPIKLF2PPQPKGYVWN">Hole Size Constraint (Min=0.3mm) (Max=12mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDW1U3K1J23EZEIZ4VZCLPNXEWGLPWXC0VFXVQIFJLXH2ADYH5VVEK">Height Constraint (Min=0mm) (Max=100mm) (Prefered=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZNQUDKWJI2FQLRNFZ5BG1IUXKN1Y3IV3KCLFVBL245ONFVAZUFOH">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEBP21ERS4TUXLQHD25PGAIOMBLJF14UY2CRU0EE50MP4LXSYXSGD">Minimum Solder Mask Sliver (Gap=0.05mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGOHAAIGDRZMKGWQF2G4UKYOVTFH31AREXC0QAACY4XSIHSP1WZ1K">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEJ51VR5R42GEG44ZUDPVENWNCDXWAANTVCLN1OGOTY5QLFBASP3C">Silk to Silk (Clearance=0.25mm) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCXFKM0XIZGEIJIIGNEGFIYL5OSM1JJQVAYPQK0UXWYTGV45NGC">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">52</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJ1HODSE3DST3B4X5TCKWSBCFFBUWRAJ0BYVL5TT22PR0DRHD1PN">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">103</td>
+</tr>
+</table><br><a name="IDZCF1JSHZUEXORCLCR0WVJMBUH35MATTHMP2M3BX0MDVCG0DNLMF"><h2>Warnings</h2></a><a name="IDHPSJXPFNPJYCLWZGHAMUG4VG3EIMIHAKV5WQBZNZJLA3CZYEUAQC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Your board contains 1 shelved polygon - copper connectivity will not be reported correctly. Unshelve polygons and re-run DRC check before  producing manufacturing outputs.</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: GND In net GND On Bottom Layer</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDORV4SWDIWY5VC12YSUU2GRHVBBWIDGO2AQOALRGLJPXPUOMBDBBK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Width Constraint (Min=0.2mm) (Max=3mm) (Preferred=3mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2959.622mil|Location2.X=3038.401mil|Location1.Y=2302.142mil|Location2.Y=2376.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2959.622mil|Location2.X=3038.401mil|Location1.Y=2302.142mil|Location2.Y=2376.912mil|Absolute=True">Width Constraint: Track (75.5mm,58.8mm)(75.525mm,58.825mm) on Top Layer Actual Width = 0.6mm, Target Width = 0.4mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEBXQ202O4JU2G04NFO4FWN0SCCZYKARGV23JT1JI2K0BKNCIFK3P"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3848.425mil|Location2.X=3893.701mil|Location1.Y=1883.858mil|Location2.Y=1938.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3848.425mil|Location2.X=3893.701mil|Location1.Y=1883.858mil|Location2.Y=1938.976mil|Absolute=True">Un-Routed Net Constraint: Net +3.3VD Between Pad U1-32(98.225mm,48.55mm) on Top Layer And Pad C5-2(98.325mm,48.625mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3275.984mil|Location2.X=3501.575mil|Location1.Y=2238.583mil|Location2.Y=2412.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3275.984mil|Location2.X=3501.575mil|Location1.Y=2238.583mil|Location2.Y=2412.992mil|Absolute=True">Un-Routed Net Constraint: Net D4.1.F Between Track (79.716mm,59.4mm)(85.75mm,59.4mm) on Signal Layer 2 And Track (86.4mm,58.75mm)(86.425mm,58.725mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3200.197mil|Location2.X=3497.638mil|Location1.Y=3026.968mil|Location2.Y=2991.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3200.197mil|Location2.X=3497.638mil|Location1.Y=3026.968mil|Location2.Y=2991.732mil|Absolute=True">Un-Routed Net Constraint: Net D4.AB Between Track (83.8mm,79.45mm)(83.825mm,79.425mm) on Signal Layer 1 And Track (86.3mm,73.45mm)(86.725mm,73.875mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2081.102mil|Location2.X=3066.929mil|Location1.Y=1277.559mil|Location2.Y=2936.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2081.102mil|Location2.X=3066.929mil|Location1.Y=1277.559mil|Location2.Y=2936.024mil|Absolute=True">Un-Routed Net Constraint: Net D4.AD Between Pad RING-10(54.23mm,33.185mm) on Bottom Layer And Pad D65-1(77mm,73.875mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3088.583mil|Location2.X=4168.307mil|Location1.Y=1806.102mil|Location2.Y=2033.465mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3088.583mil|Location2.X=4168.307mil|Location1.Y=1806.102mil|Location2.Y=2033.465mil|Absolute=True">Un-Routed Net Constraint: Net G2.3.E.1 Between Pad R36-2(79.025mm,46.375mm) on Bottom Layer And Pad Q26-2(105.275mm,51.225mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3427.559mil|Location2.X=4267.323mil|Location1.Y=2539.764mil|Location2.Y=2776.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3427.559mil|Location2.X=4267.323mil|Location1.Y=2539.764mil|Location2.Y=2776.181mil|Absolute=True">Un-Routed Net Constraint: Net G4.2.E Between Pad U16-12(89.6mm,67.05mm) on Bottom Layer And Track (105.85mm,67.975mm)(106.05mm,67.975mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3891.732mil|Location2.X=4176.181mil|Location1.Y=2931.102mil|Location2.Y=2976.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3891.732mil|Location2.X=4176.181mil|Location1.Y=2931.102mil|Location2.Y=2976.378mil|Absolute=True">Un-Routed Net Constraint: Net G4.3.E.1 Between Pad R53-2(99.35mm,75.025mm) on Bottom Layer And Pad Q43-2(105.475mm,75mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2454.724mil|Location2.X=2494.094mil|Location1.Y=1047.244mil|Location2.Y=1092.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2454.724mil|Location2.X=2494.094mil|Location1.Y=1047.244mil|Location2.Y=1092.52mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R32-1(62.85mm,27.175mm) on Top Layer And Pad R27-1(62.85mm,27.175mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3070.866mil|Location2.X=3133.858mil|Location1.Y=1752.953mil|Location2.Y=1793.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3070.866mil|Location2.X=3133.858mil|Location1.Y=1752.953mil|Location2.Y=1793.307mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R66-1(78.575mm,45.05mm) on Top Layer And Pad R36-1(79.025mm,45.025mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3270.472mil|Location2.X=3342.52mil|Location1.Y=2728.347mil|Location2.Y=2767.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3270.472mil|Location2.X=3342.52mil|Location1.Y=2728.347mil|Location2.Y=2767.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U16-7(83.8mm,69.65mm) on Bottom Layer And Pad R21-1(84.325mm,69.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3614.173mil|Location2.X=3689.961mil|Location1.Y=2669.291mil|Location2.Y=2722.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3614.173mil|Location2.X=3689.961mil|Location1.Y=2669.291mil|Location2.Y=2722.441mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Q41-3(92.4mm,68.725mm) on Bottom Layer And Pad R22-1(93.15mm,68.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4404.528mil|Location2.X=4484.252mil|Location1.Y=1850.394mil|Location2.Y=1925.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4404.528mil|Location2.X=4484.252mil|Location1.Y=1850.394mil|Location2.Y=1925.197mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-1(112.35mm,48.325mm) on Bottom Layer And Pad U3-2(113.3mm,47.4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2620.079mil|Location2.X=2762.008mil|Location1.Y=2972.441mil|Location2.Y=3048.425mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2620.079mil|Location2.X=2762.008mil|Location1.Y=2972.441mil|Location2.Y=3048.425mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Q13-3(67.15mm,75.925mm) on Top Layer And Pad U17-7(69.875mm,76.7mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.449mil|Location2.X=3837.598mil|Location1.Y=2090.551mil|Location2.Y=2300.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3784.449mil|Location2.X=3837.598mil|Location1.Y=2090.551mil|Location2.Y=2300.197mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R39-1(96.7mm,57.925mm) on Bottom Layer And Pad R14-1(96.9mm,53.6mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4362.402mil|Location2.X=4562.598mil|Location1.Y=1566.338mil|Location2.Y=1766.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4362.402mil|Location2.X=4562.598mil|Location1.Y=1566.338mil|Location2.Y=1766.339mil|Absolute=True">Un-Routed Net Constraint: Net NetC12_1 Between Pad C12-1(113.345mm,42.325mm) on Bottom Layer And Track (113.35mm,42.325mm)(113.35mm,42.325mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2857.284mil|Location2.X=3017.716mil|Location1.Y=2083.661mil|Location2.Y=2195.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2857.284mil|Location2.X=3017.716mil|Location1.Y=2083.661mil|Location2.Y=2195.866mil|Absolute=True">Un-Routed Net Constraint: Net NetD24_2 Between Pad Q5-1(73.175mm,53.35mm) on Top Layer And Pad D24-2(75.75mm,55.075mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3744.488mil|Location2.X=4741.732mil|Location1.Y=1517.126mil|Location2.Y=1751.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3744.488mil|Location2.X=4741.732mil|Location1.Y=1517.126mil|Location2.Y=1751.278mil|Absolute=True">Un-Routed Net Constraint: Net O4.1.E Between Track (97.65mm,41.075mm)(98.075mm,40.65mm) on Top Layer And Track (117.9mm,41.942mm)(120.383mm,44.425mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3777.953mil|Location2.X=4463.189mil|Location1.Y=1538.78mil|Location2.Y=2507.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3777.953mil|Location2.X=4463.189mil|Location1.Y=1538.78mil|Location2.Y=2507.48mil|Absolute=True">Un-Routed Net Constraint: Net O4.1.F Between Via (98.5mm,41.625mm) from Top Layer to Bottom Layer And Track (110.825mm,61.15mm)(111.95mm,60.025mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3467.913mil|Location2.X=3889.37mil|Location1.Y=2443.307mil|Location2.Y=1658.071mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3467.913mil|Location2.X=3889.37mil|Location1.Y=2443.307mil|Location2.Y=1658.071mil|Absolute=True">Un-Routed Net Constraint: Net O4.2.E Between Track (90mm,65.225mm)(90.625mm,64.6mm) on Bottom Layer And Pad U1-47(96.25mm,39.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3270.472mil|Location2.X=3816.929mil|Location1.Y=1587.598mil|Location2.Y=2701.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3270.472mil|Location2.X=3816.929mil|Location1.Y=1587.598mil|Location2.Y=2701.968mil|Absolute=True">Un-Routed Net Constraint: Net O4.2.F Between Pad U16-5(83.8mm,68.35mm) on Bottom Layer And Pad U1-45(96.25mm,40.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3160.986mil|Location2.X=3827.362mil|Location1.Y=2445.4mil|Location2.Y=1631.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3160.986mil|Location2.X=3827.362mil|Location1.Y=2445.4mil|Location2.Y=1631.496mil|Absolute=True">Un-Routed Net Constraint: Net O4.3.F Between Track (82.829mm,64.653mm)(82.829mm,65.396mm) on Bottom Layer And Track (94.675mm,38.9mm)(94.85mm,39.075mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3427.559mil|Location2.X=3645.276mil|Location1.Y=2565.354mil|Location2.Y=1370.064mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3427.559mil|Location2.X=3645.276mil|Location1.Y=2565.354mil|Location2.Y=1370.064mil|Absolute=True">Un-Routed Net Constraint: Net O4.AB Between Pad U16-11(89.6mm,67.7mm) on Bottom Layer And Track (90.05mm,32.26mm)(90.915mm,33.125mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3456.102mil|Location2.X=4006.496mil|Location1.Y=2616.535mil|Location2.Y=1733.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3456.102mil|Location2.X=4006.496mil|Location1.Y=2616.535mil|Location2.Y=1733.858mil|Absolute=True">Un-Routed Net Constraint: Net O4.AD Between Track (90.325mm,69mm)(90.555mm,69.23mm) on Bottom Layer And Track (99.225mm,41.5mm)(100.275mm,42.55mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2593.045mil|Location2.X=4147.244mil|Location1.Y=2806.638mil|Location2.Y=1810.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2593.045mil|Location2.X=4147.244mil|Location1.Y=2806.638mil|Location2.Y=1810.63mil|Absolute=True">Un-Routed Net Constraint: Net O5.1.E Between Via (68.403mm,73.829mm) from Top Layer to Bottom Layer And Track (102.8mm,43.234mm)(102.8mm,43.45mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3881.299mil|Location2.X=4128.015mil|Location1.Y=1550.591mil|Location2.Y=3033.071mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3881.299mil|Location2.X=4128.015mil|Location1.Y=1550.591mil|Location2.Y=3033.071mil|Absolute=True">Un-Routed Net Constraint: Net O5.1.F Between Track (99.725mm,40.525mm)(101.125mm,41.925mm) on Top Layer And Track (102.312mm,74.5mm)(102.612mm,74.8mm) on Signal Layer 1 </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2523.032mil|Location2.X=4091.142mil|Location1.Y=2691.338mil|Location2.Y=1643.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2523.032mil|Location2.X=4091.142mil|Location1.Y=2691.338mil|Location2.Y=1643.307mil|Absolute=True">Un-Routed Net Constraint: Net O5.2.E Between Pad U17-13(66.625mm,70.9mm) on Bottom Layer And Track (101.375mm,39.2mm)(101.4mm,39.175mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.976mil|Location2.X=4065.551mil|Location1.Y=2856.693mil|Location2.Y=1659.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.976mil|Location2.X=4065.551mil|Location1.Y=2856.693mil|Location2.Y=1659.055mil|Absolute=True">Un-Routed Net Constraint: Net O5.2.F Between Via (68.3mm,75.1mm) from Top Layer to Bottom Layer And Track (100.725mm,39.6mm)(101.375mm,40.25mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2765.157mil|Location2.X=4135.433mil|Location1.Y=2753.347mil|Location2.Y=1705.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2765.157mil|Location2.X=4135.433mil|Location1.Y=2753.347mil|Location2.Y=1705.315mil|Absolute=True">Un-Routed Net Constraint: Net O5.3.E Between Track (72.55mm,72.7mm)(72.775mm,72.475mm) on Bottom Layer And Track (102.5mm,40.775mm)(103.025mm,41.3mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.539mil|Location2.X=4149.213mil|Location1.Y=2754.47mil|Location2.Y=1769.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.539mil|Location2.X=4149.213mil|Location1.Y=2754.47mil|Location2.Y=1769.291mil|Absolute=True">Un-Routed Net Constraint: Net O5.3.F Between Track (75.579mm,72.504mm)(75.579mm,72.529mm) on Bottom Layer And Track (102.85mm,42.009mm)(102.85mm,42.4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4386.713mil|Location2.X=4592.126mil|Location1.Y=1736.614mil|Location2.Y=1928.74mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4386.713mil|Location2.X=4592.126mil|Location1.Y=1736.614mil|Location2.Y=1928.74mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad D2-1(113.963mm,46.65mm) on Bottom Layer And Track (114.1mm,46.45mm)(115.275mm,47.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4437.008mil|Location2.X=4499.016mil|Location1.Y=1879.921mil|Location2.Y=1925.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4437.008mil|Location2.X=4499.016mil|Location1.Y=1879.921mil|Location2.Y=1925.197mil|Absolute=True">Un-Routed Net Constraint: Net VIN Between Pad U3-3(113.3mm,48.35mm) on Top Layer And Pad C3-2(113.8mm,48.325mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2747.977mil|Location2.X=2958.268mil|Location1.Y=2373.425mil|Location2.Y=2271.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2747.977mil|Location2.X=2958.268mil|Location1.Y=2373.425mil|Location2.Y=2271.26mil|Absolute=True">Un-Routed Net Constraint: Net G1.2.F.1 Between Track (70.066mm,62.825mm)(72.339mm,62.825mm) on Top Layer And Track (72.6mm,55.15mm)(73.175mm,55.15mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2636.221mil|Location2.X=2846.063mil|Location1.Y=2922.638mil|Location2.Y=2880.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2636.221mil|Location2.X=2846.063mil|Location1.Y=2922.638mil|Location2.Y=2880.512mil|Absolute=True">Un-Routed Net Constraint: Net G1.3.E.1 Between Track (69.5mm,76.775mm)(69.55mm,76.825mm) on Top Layer And Track (69.75mm,70.625mm)(74.425mm,70.625mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3400mil|Location2.X=3618.701mil|Location1.Y=2679.528mil|Location2.Y=3125.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3400mil|Location2.X=3618.701mil|Location1.Y=2679.528mil|Location2.Y=3125.59mil|Absolute=True">Un-Routed Net Constraint: Net G1.3.F.1 Between Track (88.9mm,70.6mm)(92.875mm,70.6mm) on Top Layer And Pad Q11-2(89.375mm,76.85mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.575mil|Location2.X=2306.693mil|Location1.Y=1113.582mil|Location2.Y=1167.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.575mil|Location2.X=2306.693mil|Location1.Y=1113.582mil|Location2.Y=1167.913mil|Absolute=True">Un-Routed Net Constraint: Net G1.AB.1 Between Track (54.65mm,30.825mm)(58.277mm,34.452mm) on Signal Layer 1 And Track (56.05mm,27.125mm)(57.375mm,27.125mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3790.354mil|Location2.X=4009.843mil|Location1.Y=2401.575mil|Location2.Y=2444.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3790.354mil|Location2.X=4009.843mil|Location1.Y=2401.575mil|Location2.Y=2444.882mil|Absolute=True">Un-Routed Net Constraint: Net G3.3.E.1 Between Pad R45-2(96.85mm,61.6mm) on Bottom Layer And Pad Q35-2(101.25mm,61.425mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.016mil|Location2.X=2177.165mil|Location1.Y=2662.402mil|Location2.Y=2748.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.016mil|Location2.X=2177.165mil|Location1.Y=2662.402mil|Location2.Y=2748.032mil|Absolute=True">Un-Routed Net Constraint: Net G5.1.F Between Via (54.35mm,68.025mm) from Top Layer to Bottom Layer And Pad Q47-2(54.7mm,69.375mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2523.032mil|Location2.X=2744.814mil|Location1.Y=2919.685mil|Location2.Y=3012.544mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2523.032mil|Location2.X=2744.814mil|Location1.Y=2919.685mil|Location2.Y=3012.544mil|Absolute=True">Un-Routed Net Constraint: Net G5.1.F Between Pad U17-2(66.625mm,76.7mm) on Bottom Layer And Track (67.178mm,73.862mm)(67.178mm,73.979mm) on Signal Layer 1 </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.016mil|Location2.X=2196.85mil|Location1.Y=2535.433mil|Location2.Y=2693.898mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.016mil|Location2.X=2196.85mil|Location1.Y=2535.433mil|Location2.Y=2693.898mil|Absolute=True">Un-Routed Net Constraint: Net G5.1.F Between Via (54.35mm,68.025mm) from Top Layer to Bottom Layer And Pad R58-2(55.225mm,64.9mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3580.709mil|Location2.X=3627.953mil|Location1.Y=1255.906mil|Location2.Y=1301.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3580.709mil|Location2.X=3627.953mil|Location1.Y=1255.906mil|Location2.Y=1301.181mil|Absolute=True">Un-Routed Net Constraint: Net G5.AB Between Pad R64-2(91.55mm,32.475mm) on Bottom Layer And Pad Q53-2(91.55mm,32.475mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.465mil|Location2.X=3580.709mil|Location1.Y=1043.307mil|Location2.Y=1088.583mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3533.465mil|Location2.X=3580.709mil|Location1.Y=1043.307mil|Location2.Y=1088.583mil|Absolute=True">Un-Routed Net Constraint: Net G5.AD Between Pad R65-2(90.325mm,27.075mm) on Bottom Layer And Pad Q54-2(90.35mm,27.05mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEBP21ERS4TUXLQHD25PGAIOMBLJF14UY2CRU0EE50MP4LXSYXSGD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.05mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3805.571mil|Location2.X=3808.789mil|Location1.Y=2053.609mil|Location2.Y=2056.828mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3805.571mil|Location2.X=3808.789mil|Location1.Y=2053.609mil|Location2.Y=2056.828mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.005mm &lt; 0.05mm) Between Via (97.105mm,52.203mm) from Top Layer to Bottom Layer And Pad Q27-3(96.1mm,52.15mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.005mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGOHAAIGDRZMKGWQF2G4UKYOVTFH31AREXC0QAACY4XSIHSP1WZ1K"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.783mil|Location2.X=2498.408mil|Location1.Y=1236.103mil|Location2.Y=1239.727mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2494.783mil|Location2.X=2498.408mil|Location1.Y=1236.103mil|Location2.Y=1239.727mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Text "D35" (66.163mm,31.335mm) on Bottom Overlay And Pad THUMB 2-(62.695mm,32.29mm) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEJ51VR5R42GEG44ZUDPVENWNCDXWAANTVCLN1OGOTY5QLFBASP3C"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.25mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3870.323mil|Location2.X=3881.416mil|Location1.Y=2877.27mil|Location2.Y=2888.494mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3870.323mil|Location2.X=3881.416mil|Location1.Y=2877.27mil|Location2.Y=2888.494mil|Absolute=True">Silk To Silk Clearance Constraint: (0.223mm &lt; 0.25mm) Between Text "R53" (101.325mm,72.85mm) on Bottom Overlay And Arc (98.25mm,73.3mm) on Bottom Overlay Silk Text to Silk Clearance [0.223mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3777.245mil|Location2.X=3788.338mil|Location1.Y=2201.147mil|Location2.Y=2212.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3777.245mil|Location2.X=3788.338mil|Location1.Y=2201.147mil|Location2.Y=2212.239mil|Absolute=True">Silk To Silk Clearance Constraint: (0.168mm &lt; 0.25mm) Between Text "R14" (96.275mm,56.05mm) on Top Overlay And Text "D22" (93.225mm,56.05mm) on Top Overlay Silk Text to Silk Clearance [0.168mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3383.052mil|Location2.X=3394.145mil|Location1.Y=2481.125mil|Location2.Y=2492.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3383.052mil|Location2.X=3394.145mil|Location1.Y=2481.125mil|Location2.Y=2492.217mil|Absolute=True">Silk To Silk Clearance Constraint: (0.243mm &lt; 0.25mm) Between Text "R19" (86.3mm,62.95mm) on Top Overlay And Text "D26" (83.175mm,62.95mm) on Top Overlay Silk Text to Silk Clearance [0.243mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.967mil|Location2.X=4172.059mil|Location1.Y=1590.244mil|Location2.Y=1601.336mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.967mil|Location2.X=4172.059mil|Location1.Y=1590.244mil|Location2.Y=1601.336mil|Absolute=True">Silk To Silk Clearance Constraint: (0.192mm &lt; 0.25mm) Between Text "C7" (107.7mm,39.575mm) on Bottom Overlay And Text "C6" (105.625mm,39.7mm) on Bottom Overlay Silk Text to Silk Clearance [0.192mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2777.96mil|Location2.X=2789.053mil|Location1.Y=1234.012mil|Location2.Y=1245.104mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2777.96mil|Location2.X=2789.053mil|Location1.Y=1234.012mil|Location2.Y=1245.104mil|Absolute=True">Silk To Silk Clearance Constraint: (0.191mm &lt; 0.25mm) Between Text "D36" (73.571mm,31.325mm) on Bottom Overlay And Text "Q17" (70.497mm,30.645mm) on Bottom Overlay Silk Text to Silk Clearance [0.191mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4482.675mil|Location2.X=4493.767mil|Location1.Y=2738.542mil|Location2.Y=2749.635mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4482.675mil|Location2.X=4493.767mil|Location1.Y=2738.542mil|Location2.Y=2749.635mil|Absolute=True">Silk To Silk Clearance Constraint: (0.184mm &lt; 0.25mm) Between Text "R55" (116.5mm,69.9mm) on Bottom Overlay And Text "C25" (114.425mm,68.5mm) on Bottom Overlay Silk Text to Silk Clearance [0.184mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCXFKM0XIZGEIJIIGNEGFIYL5OSM1JJQVAYPQK0UXWYTGV45NGC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1597.878mil|Location2.X=1644.864mil|Location1.Y=2913.823mil|Location2.Y=2987.052mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1597.878mil|Location2.X=1644.864mil|Location1.Y=2913.823mil|Location2.Y=2987.052mil|Absolute=True">Net Antennae: Via (41.075mm,74.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.547mil|Location2.X=3534.106mil|Location1.Y=2856.736mil|Location2.Y=2919.108mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.547mil|Location2.X=3534.106mil|Location1.Y=2856.736mil|Location2.Y=2919.108mil|Absolute=True">Net Antennae: Via (89.15mm,72.975mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3537.839mil|Location2.X=3578.397mil|Location1.Y=2843.941mil|Location2.Y=2906.313mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3537.839mil|Location2.X=3578.397mil|Location1.Y=2843.941mil|Location2.Y=2906.313mil|Absolute=True">Net Antennae: Via (90.275mm,72.65mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3138.232mil|Location2.X=3178.791mil|Location1.Y=2847.878mil|Location2.Y=2910.25mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3138.232mil|Location2.X=3178.791mil|Location1.Y=2847.878mil|Location2.Y=2910.25mil|Absolute=True">Net Antennae: Via (80.125mm,72.75mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3067.366mil|Location2.X=3107.925mil|Location1.Y=2840.988mil|Location2.Y=2903.36mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3067.366mil|Location2.X=3107.925mil|Location1.Y=2840.988mil|Location2.Y=2903.36mil|Absolute=True">Net Antennae: Via (78.325mm,72.575mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.658mil|Location2.X=3402.216mil|Location1.Y=2731.736mil|Location2.Y=2794.108mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3361.658mil|Location2.X=3402.216mil|Location1.Y=2731.736mil|Location2.Y=2794.108mil|Absolute=True">Net Antennae: Via (85.8mm,69.8mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.64mil|Location2.X=2730.626mil|Location1.Y=1263.295mil|Location2.Y=1336.524mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.64mil|Location2.X=2730.626mil|Location1.Y=1263.295mil|Location2.Y=1336.524mil|Absolute=True">Net Antennae: Via (68.653mm,32.577mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2747.484mil|Location2.X=2794.471mil|Location1.Y=1312.445mil|Location2.Y=1385.674mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2747.484mil|Location2.X=2794.471mil|Location1.Y=1312.445mil|Location2.Y=1385.674mil|Absolute=True">Net Antennae: Via (70.275mm,33.825mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3090.004mil|Location2.X=3130.562mil|Location1.Y=2892.169mil|Location2.Y=2954.541mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3090.004mil|Location2.X=3130.562mil|Location1.Y=2892.169mil|Location2.Y=2954.541mil|Absolute=True">Net Antennae: Via (78.9mm,73.875mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3486.658mil|Location2.X=3527.216mil|Location1.Y=1294.728mil|Location2.Y=1357.1mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3486.658mil|Location2.X=3527.216mil|Location1.Y=1294.728mil|Location2.Y=1357.1mil|Absolute=True">Net Antennae: Via (88.975mm,33.3mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3589.196mil|Location2.X=3636.182mil|Location1.Y=2293.857mil|Location2.Y=2367.086mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3589.196mil|Location2.X=3636.182mil|Location1.Y=2293.857mil|Location2.Y=2367.086mil|Absolute=True">Net Antennae: Via (91.654mm,58.753mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.161mil|Location2.X=1377.148mil|Location1.Y=1322.287mil|Location2.Y=1395.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.161mil|Location2.X=1377.148mil|Location1.Y=1322.287mil|Location2.Y=1395.517mil|Absolute=True">Net Antennae: Via (34.275mm,34.075mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2313.429mil|Location2.X=2353.988mil|Location1.Y=2905.949mil|Location2.Y=2968.321mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2313.429mil|Location2.X=2353.988mil|Location1.Y=2905.949mil|Location2.Y=2968.321mil|Absolute=True">Net Antennae: Via (59.175mm,74.225mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4394.138mil|Location2.X=4434.696mil|Location1.Y=1713.035mil|Location2.Y=1775.407mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4394.138mil|Location2.X=4434.696mil|Location1.Y=1713.035mil|Location2.Y=1775.407mil|Absolute=True">Net Antennae: Via (112.025mm,43.925mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4016.185mil|Location2.X=4063.172mil|Location1.Y=2178.587mil|Location2.Y=2251.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4016.185mil|Location2.X=4063.172mil|Location1.Y=2178.587mil|Location2.Y=2251.816mil|Absolute=True">Net Antennae: Via (102.5mm,55.825mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3484.689mil|Location2.X=3525.247mil|Location1.Y=2328.193mil|Location2.Y=2390.565mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3484.689mil|Location2.X=3525.247mil|Location1.Y=2328.193mil|Location2.Y=2390.565mil|Absolute=True">Net Antennae: Via (88.925mm,59.55mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3548.665mil|Location2.X=3595.652mil|Location1.Y=2524.059mil|Location2.Y=2597.288mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3548.665mil|Location2.X=3595.652mil|Location1.Y=2524.059mil|Location2.Y=2597.288mil|Absolute=True">Net Antennae: Via (90.625mm,64.6mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.453mil|Location2.X=3171.439mil|Location1.Y=2054.571mil|Location2.Y=2127.8mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3124.453mil|Location2.X=3171.439mil|Location1.Y=2054.571mil|Location2.Y=2127.8mil|Absolute=True">Net Antennae: Via (79.85mm,52.675mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2187.445mil|Location2.X=2234.431mil|Location1.Y=1048.665mil|Location2.Y=1121.895mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2187.445mil|Location2.X=2234.431mil|Location1.Y=1048.665mil|Location2.Y=1121.895mil|Absolute=True">Net Antennae: Via (56.05mm,27.125mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2907.917mil|Location2.X=2954.904mil|Location1.Y=1052.602mil|Location2.Y=1125.832mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2907.917mil|Location2.X=2954.904mil|Location1.Y=1052.602mil|Location2.Y=1125.832mil|Absolute=True">Net Antennae: Via (74.35mm,27.225mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.009mil|Location2.X=4644.567mil|Location1.Y=1419.799mil|Location2.Y=1482.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4604.009mil|Location2.X=4644.567mil|Location1.Y=1419.799mil|Location2.Y=1482.17mil|Absolute=True">Net Antennae: Via (117.356mm,36.477mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2120.516mil|Location2.X=2167.502mil|Location1.Y=2658.902mil|Location2.Y=2732.131mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2120.516mil|Location2.X=2167.502mil|Location1.Y=2658.902mil|Location2.Y=2732.131mil|Absolute=True">Net Antennae: Via (54.35mm,68.025mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1331.146mil|Location2.X=1378.132mil|Location1.Y=1074.256mil|Location2.Y=1147.485mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1331.146mil|Location2.X=1378.132mil|Location1.Y=1074.256mil|Location2.Y=1147.485mil|Absolute=True">Net Antennae: Via (34.3mm,27.775mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4124.453mil|Location2.X=4165.011mil|Location1.Y=2882.327mil|Location2.Y=2944.699mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4124.453mil|Location2.X=4165.011mil|Location1.Y=2882.327mil|Location2.Y=2944.699mil|Absolute=True">Net Antennae: Via (105.175mm,73.625mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.28mil|Location2.X=2432.266mil|Location1.Y=1222.878mil|Location2.Y=1296.107mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2385.28mil|Location2.X=2432.266mil|Location1.Y=1222.878mil|Location2.Y=1296.107mil|Absolute=True">Net Antennae: Via (61.075mm,31.55mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3051.618mil|Location2.X=3098.605mil|Location1.Y=1184.492mil|Location2.Y=1257.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3051.618mil|Location2.X=3098.605mil|Location1.Y=1184.492mil|Location2.Y=1257.721mil|Absolute=True">Net Antennae: Via (78mm,30.575mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2796.697mil|Location2.X=2843.683mil|Location1.Y=2020.122mil|Location2.Y=2093.351mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2796.697mil|Location2.X=2843.683mil|Location1.Y=2020.122mil|Location2.Y=2093.351mil|Absolute=True">Net Antennae: Via (71.525mm,51.8mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3100.983mil|Location2.X=3141.541mil|Location1.Y=2340.119mil|Location2.Y=2402.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3100.983mil|Location2.X=3141.541mil|Location1.Y=2340.119mil|Location2.Y=2402.491mil|Absolute=True">Net Antennae: Via (79.179mm,59.853mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4560.476mil|Location2.X=4607.463mil|Location1.Y=3001.421mil|Location2.Y=3074.651mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4560.476mil|Location2.X=4607.463mil|Location1.Y=3001.421mil|Location2.Y=3074.651mil|Absolute=True">Net Antennae: Via (116.325mm,76.725mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2669.728mil|Location2.X=2710.287mil|Location1.Y=2600.831mil|Location2.Y=2663.203mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2669.728mil|Location2.X=2710.287mil|Location1.Y=2600.831mil|Location2.Y=2663.203mil|Absolute=True">Net Antennae: Via (68.225mm,66.475mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3184.492mil|Location2.X=3231.479mil|Location1.Y=1427.602mil|Location2.Y=1500.832mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3184.492mil|Location2.X=3231.479mil|Location1.Y=1427.602mil|Location2.Y=1500.832mil|Absolute=True">Net Antennae: Via (81.375mm,36.75mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.492mil|Location2.X=3725.051mil|Location1.Y=1073.272mil|Location2.Y=1135.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.492mil|Location2.X=3725.051mil|Location1.Y=1073.272mil|Location2.Y=1135.644mil|Absolute=True">Net Antennae: Via (94mm,27.675mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4358.705mil|Location2.X=4399.263mil|Location1.Y=1755.358mil|Location2.Y=1817.73mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4358.705mil|Location2.X=4399.263mil|Location1.Y=1755.358mil|Location2.Y=1817.73mil|Absolute=True">Net Antennae: Via (111.125mm,45mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3327.209mil|Location2.X=3367.767mil|Location1.Y=1643.154mil|Location2.Y=1705.525mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3327.209mil|Location2.X=3367.767mil|Location1.Y=1643.154mil|Location2.Y=1705.525mil|Absolute=True">Net Antennae: Via (84.925mm,42.15mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3974.847mil|Location2.X=4015.405mil|Location1.Y=1568.351mil|Location2.Y=1630.722mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3974.847mil|Location2.X=4015.405mil|Location1.Y=1568.351mil|Location2.Y=1630.722mil|Absolute=True">Net Antennae: Via (101.375mm,40.25mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.642mil|Location2.X=3903.2mil|Location1.Y=1547.681mil|Location2.Y=1610.053mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3862.642mil|Location2.X=3903.2mil|Location1.Y=1547.681mil|Location2.Y=1610.053mil|Absolute=True">Net Antennae: Via (98.525mm,39.725mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3691.382mil|Location2.X=3731.94mil|Location1.Y=2874.453mil|Location2.Y=2936.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3691.382mil|Location2.X=3731.94mil|Location1.Y=2874.453mil|Location2.Y=2936.825mil|Absolute=True">Net Antennae: Via (94.175mm,73.425mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3381.343mil|Location2.X=3421.901mil|Location1.Y=2838.035mil|Location2.Y=2900.407mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3381.343mil|Location2.X=3421.901mil|Location1.Y=2838.035mil|Location2.Y=2900.407mil|Absolute=True">Net Antennae: Via (86.3mm,72.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3244.691mil|Location2.X=3285.249mil|Location1.Y=2529.105mil|Location2.Y=2591.476mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3244.691mil|Location2.X=3285.249mil|Location1.Y=2529.105mil|Location2.Y=2591.476mil|Absolute=True">Net Antennae: Via (82.829mm,64.653mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2537.839mil|Location2.X=2578.397mil|Location1.Y=2831.146mil|Location2.Y=2893.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2537.839mil|Location2.X=2578.397mil|Location1.Y=2831.146mil|Location2.Y=2893.517mil|Absolute=True">Net Antennae: Via (64.875mm,72.325mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2672.681mil|Location2.X=2713.24mil|Location1.Y=2940.398mil|Location2.Y=3002.769mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2672.681mil|Location2.X=2713.24mil|Location1.Y=2940.398mil|Location2.Y=3002.769mil|Absolute=True">Net Antennae: Via (68.3mm,75.1mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3504.374mil|Location2.X=3551.36mil|Location1.Y=2524.059mil|Location2.Y=2597.288mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3504.374mil|Location2.X=3551.36mil|Location1.Y=2524.059mil|Location2.Y=2597.288mil|Absolute=True">Net Antennae: Via (89.5mm,64.6mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4311.461mil|Location2.X=4352.019mil|Location1.Y=2313.429mil|Location2.Y=2375.801mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4311.461mil|Location2.X=4352.019mil|Location1.Y=2313.429mil|Location2.Y=2375.801mil|Absolute=True">Net Antennae: Via (109.925mm,59.175mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4039.807mil|Location2.X=4080.366mil|Location1.Y=1609.689mil|Location2.Y=1672.061mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4039.807mil|Location2.X=4080.366mil|Location1.Y=1609.689mil|Location2.Y=1672.061mil|Absolute=True">Net Antennae: Via (103.025mm,41.3mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3965.004mil|Location2.X=4005.562mil|Location1.Y=1634.295mil|Location2.Y=1696.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3965.004mil|Location2.X=4005.562mil|Location1.Y=1634.295mil|Location2.Y=1696.667mil|Absolute=True">Net Antennae: Via (101.125mm,41.925mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4032.917mil|Location2.X=4073.476mil|Location1.Y=1652.996mil|Location2.Y=1715.368mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4032.917mil|Location2.X=4073.476mil|Location1.Y=1652.996mil|Location2.Y=1715.368mil|Absolute=True">Net Antennae: Via (102.85mm,42.4mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3844.925mil|Location2.X=3885.484mil|Location1.Y=1584.099mil|Location2.Y=1646.47mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3844.925mil|Location2.X=3885.484mil|Location1.Y=1584.099mil|Location2.Y=1646.47mil|Absolute=True">Net Antennae: Via (98.075mm,40.65mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4465.988mil|Location2.X=4512.975mil|Location1.Y=2008.311mil|Location2.Y=2081.54mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4465.988mil|Location2.X=4512.975mil|Location1.Y=2008.311mil|Location2.Y=2081.54mil|Absolute=True">Net Antennae: Via (113.925mm,51.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4871.5mil|Location2.X=4918.486mil|Location1.Y=2739.61mil|Location2.Y=2812.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4871.5mil|Location2.X=4918.486mil|Location1.Y=2739.61mil|Location2.Y=2812.84mil|Absolute=True">Net Antennae: Via (124.225mm,70.075mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4801.618mil|Location2.X=4842.177mil|Location1.Y=1365.595mil|Location2.Y=1427.966mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4801.618mil|Location2.X=4842.177mil|Location1.Y=1365.595mil|Location2.Y=1427.966mil|Absolute=True">Net Antennae: Via (122.375mm,35.1mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.902mil|Location2.X=3322.318mil|Location1.Y=3112.642mil|Location2.Y=3171.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3283.902mil|Location2.X=3322.318mil|Location1.Y=3112.642mil|Location2.Y=3171.395mil|Absolute=True">Net Antennae: Track (28.397mm,79.45mm)(83.8mm,79.45mm) on Signal Layer 1 </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3364.61mil|Location2.X=3394.456mil|Location1.Y=2327.209mil|Location2.Y=2371.726mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3364.61mil|Location2.X=3394.456mil|Location1.Y=2327.209mil|Location2.Y=2371.726mil|Absolute=True">Net Antennae: Track (79.716mm,59.4mm)(85.75mm,59.4mm) on Signal Layer 2 </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJ1HODSE3DST3B4X5TCKWSBCFFBUWRAJ0BYVL5TT22PR0DRHD1PN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Modified Polygon (Allow modified: No), (Allow shelved: No)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1027.559mil|Location2.X=4888.779mil|Location1.Y=1030.512mil|Location2.Y=3111.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ramal\Documents\Third Year\IGEN 330 - Artus Bionics\Flex_PCB.git\trunk\Altium\PCB Layout.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1027.559mil|Location2.X=4888.779mil|Location1.Y=1030.512mil|Location2.Y=3111.22mil|Absolute=True">Modified Polygon: Polygon Shelved  (GND) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -144,6 +144,10 @@ DocumentUniqueId=SUVFAXWK
 DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\Artus Flex PCB - Revision 1.nsx
 DItemRevisionGUID=
 
+[GeneratedDocument2]
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\Design Rule Check - PCB Layout.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
