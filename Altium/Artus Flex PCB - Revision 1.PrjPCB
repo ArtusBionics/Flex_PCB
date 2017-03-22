@@ -141,7 +141,7 @@ GenerateClassCluster=0
 DocumentUniqueId=SUVFAXWK
 
 [Document7]
-DocumentPath=NC Drill.Cam
+DocumentPath=PCB Outputs.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -158,7 +158,7 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [Document8]
-DocumentPath=Gerber Files.Cam
+DocumentPath=NC Drill File.Cam
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -175,11 +175,11 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\Artus Flex PCB - Revision 1.nsx
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout-Plated.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\Design Rule Check - PCB Layout.html
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.DRL
 DItemRevisionGUID=
 
 [GeneratedDocument3]
@@ -191,71 +191,59 @@ DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.LDP
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.G1
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.REP
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.G2
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.RUL
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.TXT
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Copper_Signal_1.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Copper_Signal_2.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Copper_Signal_Bot.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Copper_Signal_Top.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Legend_Bot.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Legend_Top.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Pads_Bot.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Pads_Top.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Paste_Bot.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.REP
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Paste_Top.gbr
-DItemRevisionGUID=
-
-[GeneratedDocument19]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Profile.gbr
-DItemRevisionGUID=
-
-[GeneratedDocument20]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Soldermask_Bot.gbr
-DItemRevisionGUID=
-
-[GeneratedDocument21]
-DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout_Soldermask_Top.gbr
+DocumentPath=Project Outputs for Artus Flex PCB - Revision 1\PCB Layout.RUL
 DItemRevisionGUID=
 
 [Configuration1]
@@ -591,7 +579,7 @@ OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
 Configuration3_Name1=OutputConfigurationParameter1
-Configuration3_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=4|NumberOfUnits=4|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Metric|ZeroesMode=SuppressTrailingZeroes
+Configuration3_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=True|GenerateSeparatePlatedNonPlatedFiles=True|NumberOfDecimals=3|NumberOfUnits=4|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Metric|ZeroesMode=SuppressTrailingZeroes
 OutputType4=IPC2581
 OutputName4=IPC-2581 Files
 OutputDocumentPath4=
@@ -603,7 +591,7 @@ OutputDocumentPath5=
 OutputVariantName5=
 OutputDefault5=0
 Configuration5_Name1=OutputConfigurationParameter1
-Configuration5_Item1=FileComment= |FileSubject=Autodetect|GenerateDRCRulesFile=True|GerberUnit=Metric|MinusApertureTolerance=39|NumberOfDecimals=4|OptimizeChangeLocationCommands=True|PlotBlindViasPairs=False|PlotBoardProfile=True|PlotDrillDrawingPairs=False|PlotDrillGuidePairs=False|PlotNPTHPairs=False|PlotPTHPairs=False|PlotX2.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973849~1,16973834~1,16973833~1,16973831~1,16842751~1,16777218~1,16973835~1,16777217~1,16973832~1,16777219~1,16973848~1|PlusApertureTolerance=39|Record=GerberX2View|Sorted=False
+Configuration5_Item1=FileComment= |FileSubject=Autodetect|GenerateDRCRulesFile=False|GerberUnit=Metric|MinusApertureTolerance=39|NumberOfDecimals=4|OptimizeChangeLocationCommands=True|PlotBlindViasPairs=False|PlotBoardProfile=True|PlotDrillDrawingPairs=False|PlotDrillGuidePairs=False|PlotNPTHPairs=False|PlotPTHPairs=False|PlotX2.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973849~1,16973834~1,16973833~1,16973831~1,16842751~1,16777218~1,16973835~1,16777217~1,16973832~1,16777219~1,16973848~1|PlusApertureTolerance=39|Record=GerberX2View|Sorted=True
 OutputType6=Test Points
 OutputName6=Test Point Report
 OutputDocumentPath6=
@@ -667,7 +655,7 @@ OutputDocumentPath12=
 OutputVariantName12=[No Variations]
 OutputDefault12=0
 Configuration12_Name1=OutputConfigurationParameter1
-Configuration12_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Metric|GerberUnit=Metric|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=39|MinusApertureTolerance=39|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=4|NumberOfDecimals=4|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=39|PlusApertureTolerance=39|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
+Configuration12_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Metric|GerberUnit=Metric|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=39|MinusApertureTolerance=39|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=4|NumberOfDecimals=4|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16777218~1,16777219~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=39|PlusApertureTolerance=39|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
 
 [OutputGroup6]
 Name=Report Outputs
