@@ -1,25 +1,9 @@
-Output: Gerber X2 Files
-Type  : GerberX2
-From  : Project [Artus Flex PCB - Revision 1.PrjPCB]
-   Generated File[PCB Layout_Copper_Signal_Top.gbr]
-   Generated File[PCB Layout_Copper_Signal_1.gbr]
-   Generated File[PCB Layout_Copper_Signal_2.gbr]
-   Generated File[PCB Layout_Copper_Signal_Bot.gbr]
-   Generated File[PCB Layout_Pads_Bot.gbr]
-   Generated File[PCB Layout_Pads_Top.gbr]
-   Generated File[PCB Layout_Legend_Top.gbr]
-   Generated File[PCB Layout_Soldermask_Top.gbr]
-   Generated File[PCB Layout_Paste_Bot.gbr]
-   Generated File[PCB Layout_Legend_Bot.gbr]
-   Generated File[PCB Layout_Soldermask_Bot.gbr]
-   Generated File[PCB Layout_Paste_Top.gbr]
-   Generated File[PCB Layout_Profile.gbr]
-   Generated File[PCB Layout.RUL]
-   Generated File[PCB Layout.EXTREP]
-   Generated File[PCB Layout.REP]
+Output: Bill of Materials
+Type  : BOM
+From  : Variant [[No Variations]] of Project [Artus Flex PCB - Revision 1.PrjPCB]
 
 
-Files Generated   : 16
+Files Generated   : 0
 Documents Printed : 0
 
-Finished Output Generation At 1:43:27 AM On 2017-03-18
+Finished Output Generation At 11:40:00 PM On 2017-03-21
